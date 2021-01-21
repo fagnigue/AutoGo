@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'inscrire',
+    loadChildren: () => import('./inscrire/inscrire.module').then( m => m.InscrirePageModule)
+  },
+  {
+    path: 'categorie-voiture',
+    loadChildren: () => import('./categorie-voiture/categorie-voiture.module').then( m => m.CategorieVoiturePageModule)
+  },
+  {
+    path: 'voiture',
+    loadChildren: () => import('./voiture/voiture.module').then( m => m.VoiturePageModule)
+  },
 ];
 
 @NgModule({
