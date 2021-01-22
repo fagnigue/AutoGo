@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { InfoService } from '../info.service';
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from './../service/api.service';
 
 
 
@@ -14,83 +15,29 @@ import { Router } from '@angular/router';
 })
 export class VoiturePage implements OnInit {
 
-  public data: any[];
+  public id: any;
+  public data;
 
   index: any = '';
 
-
-  cars: any[] = [
-  	{
-  		nom: 'Mercedes',
-  		modele: 'benz C 300',
-  		image: 'mercedes_benz_c_300',
-  		categorie: 'affaire',
-      prix: 120000,
-  	},
-  	{
-  		nom: 'Mercedes',
-  		modele: 'benz CLA 2020',
-  		image: 'mercedes-benz_cla_2020.jpeg',
-  		categorie: 'affaire',
-      prix: 150000,
-  	},
-  	{
-  		nom: 'Hyundai',
-  		modele: 'Tucson',
-  		image: 'hyundai_tucson.jpeg',
-  		categorie: 'evenements',
-      prix: 80000,
-  	},
-  	{
-  		nom: 'KIA',
-  		modele: 'Seltos',
-  		image: 'kia_seltos.jpeg',
-  		categorie: 'evenements',
-      prix: 90000,
-  	},
-  	{
-  		nom: 'Mercedes',
-  		modele: 'MARCO POLO',
-  		image: 'mercedes_marco_polo.png',
-  		categorie: 'vacances',
-      prix: 160000,
-  	},
-  	{
-  		nom: 'Mercedes',
-  		modele: 'EQV',
-  		image: 'mercedes_eqv.jpeg',
-  		categorie: 'vacances',
-      prix: 190000,
-  	},
-  	{
-  		nom: 'Mercedes',
-  		modele: 'SL',
-  		image: 'mercedes_sl.jpeg',
-  		categorie: 'balade',
-      prix: 150000,
-  	},
-  	{
-  		nom: 'KIA',
-  		modele: 'SOUL',
-  		image: 'kia_soul.jpeg',
-  		categorie: 'balade',
-      prix: 100000,
-  	}
-  ]
-
-  constructor(public categorie: InfoService, public route: Router) { }
+  constructor(public api:ApiService,public categorie: InfoService, public route: Router,public active:ActivatedRoute) { }
 
   ngOnInit() {
 
+  this.id=this.active.snapshot.params["id"];
+  
+  this.api.CategorieFinder(Number(this.id)).subscribe((responce)=>{
+    
+    this.data=responce;
+  });
+ 
     this.data = this.categorie.reservation;
 
   }
 
   getindex(index: any) {
 
-    this.categorie.reservation["voiture_nom"] = this.cars[index]["nom"];
-    this.categorie.reservation["voiture_modele"] = this.cars[index]["modele"];
-    this.categorie.reservation["voiture_prix"] = this.cars[index]["prix"];
+
 
     console.log(this.categorie.reservation);
 

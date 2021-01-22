@@ -6,19 +6,25 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { HttpClientModule } from '@angular/common/http';
 import { VoiturePageRoutingModule } from './voiture-routing.module';
 
 import { VoiturePage } from './voiture.page';
 
+import { ApiService } from './../service/api.service';
+
+
 @NgModule({
   imports: [
-    CommonModule,
+  
+  CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    HttpClientModule,
     VoiturePageRoutingModule
   ],
-  declarations: [VoiturePage]
+  declarations: [VoiturePage],
+  providers:[ApiService]
 })
 export class VoiturePageModule {}

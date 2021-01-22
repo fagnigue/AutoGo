@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from '../info.service';
 import { Router } from '@angular/router';
+import { ApiService } from './../service/api.service';
+
 
 @Component({
   selector: 'app-categorie-voiture',
@@ -10,62 +12,33 @@ import { Router } from '@angular/router';
 export class CategorieVoiturePage implements OnInit {
 
 
-	evenements: string = 'evenements';
-	affaire: string = 'affaire';
-	balade: string = 'balade';
-	vacances: string = 'vacances'; 
+	evenements: any = 4;
+	affaire: any = 2;
+	balade:any = 3;
+	vacances: any = 5; 
 
-  constructor(public route: Router, public data: InfoService) { }
+
+  constructor(public route: Router, public data: InfoService,public api:ApiService) { }
 
   ngOnInit() {
-
-  	this.data.reservation;
+	  this.data.reservation;
   }
 
 
-  Evenements() {
-	
-  	this.data.reservation["categorie"] = this.evenements;
-
-	  this.route.navigate(['/voiture']);
+  finder(id){
+	  
+		this.route.navigate(["/voiture",{id:id}]);
   }
 
 
-
-
-
-  Affaire() {
-
-  	this.data.reservation["categorie"] = this.affaire;
-  	
-	  this.route.navigate(['/voiture']);
-  }
+  
 
 
 
 
 
-  Balade() {
 
-  	console.log(this.balade);
-  	this.data.reservation["categorie"] = this.balade;
-
-	this.route.navigate(['/voiture']);
-  }
-
-
-
-
-
-  Vacances() {
-
-  	console.log(this.vacances);
-  	this.data.reservation["categorie"] = this.vacances;
-
-	this.route.navigate(['/voiture']);
-  }
-
-
+  
 
 
 

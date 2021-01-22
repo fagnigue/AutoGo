@@ -60,6 +60,7 @@ export class InscrirePage implements OnInit {
           if(this.responce.message==true){
             this.toastShower("Votre inscription à bien été faite",1000,"primary").then((u)=>u.present());
             this.route.navigate(['/']);
+            
           }else{
             this.toastShower("Veuillez verifier vos données",1000,"danger").then((u)=>u.present());
           }

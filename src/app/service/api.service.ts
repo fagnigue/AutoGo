@@ -11,6 +11,20 @@ export class ApiService {
   }
 
 
+  CategorieFinder(id_cat){
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+
+     return this.http.get(`${this.server}voiture/categorie/${id_cat}`,{headers:headers});
+
+  }
+
+
 
   auth(numero,password){
 

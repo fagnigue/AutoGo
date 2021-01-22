@@ -19,17 +19,7 @@ export class HomePage {
 
   public connecter: FormGroup;
 
-  public  data:any={
-    
-      nom:"wilfried",
-      prenom:"elvire",
-      num_telephone:"03659060",
-      ville:"abidjan",
-      email:"elvirekoua2000@gmail.com",
-     
 
-    }
-   
     
    
 
@@ -62,7 +52,8 @@ export class HomePage {
           }else{
             
             this.toastShower("connection etablie avec succès",1000,"primary").then((u)=>{u.present()});
-            this.route.navigate(['categorie-voiture']);
+            this.route.navigate(['categorie-voiture',{id:responce.data.num_telephone}]);
+           
 
           }
 
