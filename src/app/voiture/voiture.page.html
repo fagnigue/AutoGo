@@ -13,13 +13,13 @@
 	<ion-grid>
 		<ion-row *ngFor="let car of data; let index = index">
 
-			<ion-col size="12" *ngIf="car.categorie == data['categorie'] && car.disponible == 'oui'">
+			<ion-col size="12" *ngIf="car.categorie == data['categorie'] && car.disponible == 1">
 				
 
 				<ion-card>
 						
 						<ion-card-header>
-								<button ion-item (click)="getindex(index)" >
+								<button ion-item (click)="redirect(car.id)" >
 								<img src="../../assets/{{ car.image }}"  width="300px" height="120px">
 								</button>
 							<ion-card-title> {{ car.nom }}</ion-card-title>
@@ -28,6 +28,7 @@
 						
 				</ion-card>
 
+            </ion-col>
 			
 
 		</ion-row>

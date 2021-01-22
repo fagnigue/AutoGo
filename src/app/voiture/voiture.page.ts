@@ -17,7 +17,7 @@ export class VoiturePage implements OnInit {
 
   public id: any;
   public data;
-
+  public numero;
   index: any = '';
 
   constructor(public api:ApiService,public categorie: InfoService, public route: Router,public active:ActivatedRoute) { }
@@ -25,23 +25,24 @@ export class VoiturePage implements OnInit {
   ngOnInit() {
 
   this.id=this.active.snapshot.params["id"];
+
   
   this.api.CategorieFinder(Number(this.id)).subscribe((responce)=>{
     
     this.data=responce;
+   
   });
  
-    this.data = this.categorie.reservation;
 
   }
 
-  getindex(index: any) {
+  redirect(index: any) {
 
+   
+    this.numero=this.active.snapshot.params["numero"];
+  
 
-
-    console.log(this.categorie.reservation);
-
-    this.route.navigate(['/reservation']);
+    this.route.navigate(['/reservation',{card_id:index,numero:this.numero}]);
 
   }
   

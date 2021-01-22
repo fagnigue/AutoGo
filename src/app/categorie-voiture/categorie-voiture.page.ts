@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from '../info.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from './../service/api.service';
 
 
@@ -16,9 +16,9 @@ export class CategorieVoiturePage implements OnInit {
 	affaire: any = 2;
 	balade:any = 3;
 	vacances: any = 5; 
+  id:any;
 
-
-  constructor(public route: Router, public data: InfoService,public api:ApiService) { }
+  constructor(public active:ActivatedRoute,public route: Router, public data: InfoService,public api:ApiService) { }
 
   ngOnInit() {
 	  this.data.reservation;
@@ -26,9 +26,12 @@ export class CategorieVoiturePage implements OnInit {
 
 
   finder(id){
-	  
-		this.route.navigate(["/voiture",{id:id}]);
+
+	  this.id=this.active.snapshot.params["id"];
+    this.route.navigate(["/voiture",{id:id,numero:this.id}]);
+    
   }
+
 
 
   
