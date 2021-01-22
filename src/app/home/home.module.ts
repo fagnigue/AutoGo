@@ -6,18 +6,24 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 
+
+import { HttpClientModule } from '@angular/common/http';
 import { HomePageRoutingModule } from './home-routing.module';
+import { ApiService } from '../service/api.service';
 
 
 @NgModule({
   imports: [
-    CommonModule,
+  
+  CommonModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
+    HttpClientModule,
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [ApiService],
 })
 export class HomePageModule {}
