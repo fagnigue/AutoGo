@@ -21,12 +21,14 @@ export class InfoService {
 
 	public reservation: any[] = [
 		{
+			"client_id":"",
 			"categorie":"",
 			"voiture_nom":"",
 			"voiture_modele":"",
 			"voiture_prix":"",
 			"delai":"",
-			"chauffeur":""
+			"chauffeur":"",
+			"paiement":""
 		}
 	];
 
