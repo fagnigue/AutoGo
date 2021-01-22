@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class InfoService {
 
+	public voiture: any[];
+
 	public client: any[] = [
 		{
 			"nom":"",
@@ -15,14 +17,18 @@ export class InfoService {
 			"city":"",
 			"password":""
 		}
-	]
+	];
 
 	public reservation: any[] = [
 		{
 			"categorie":"",
-			"voiture":""
+			"voiture_nom":"",
+			"voiture_modele":"",
+			"voiture_prix":"",
+			"delai":"",
+			"chauffeur":""
 		}
-	]
+	];
 
   constructor() { }
 }

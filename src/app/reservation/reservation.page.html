@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="/voiture"></ion-back-button>
+    </ion-buttons>
+    <ion-title>reservation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	<div id="container">
+		
+		<form>
+
+	         	<ion-item>  
+			      <ion-label position="floating"><font style="font-size: 13px;">Delai: </font></ion-label>  
+			      <ion-input type="number" formControlName="delai"></ion-input>  
+			    </ion-item>
+
+			    	<div class="form-check">
+					  <input class="form-check-input" type="radio" id="flexRadioDefault1" value="oui">
+					  <label class="form-check-label" for="flexRadioDefault1">
+					    Oui
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" id="flexRadioDefault2" value="non">
+					  <label class="form-check-label" for="flexRadioDefault2">
+					    Non
+					  </label>
+					</div>
+
+			    <ion-item>  
+		 	      <ion-label position="floating"><font style="font-size: 13px;">Prénom: </font></ion-label>  
+			      <ion-input type="text" formControlName="prenom"></ion-input>  
+			    </ion-item>
+
+
+			    
+
+
+	          <ion-row>
+	          	<ion-col>
+			  		<ion-button type="submit" color="primary" style="width: 150px;"><font size="3px">S'INSCRIRE</font></ion-button>
+			    </ion-col>
+			  </ion-row>
+
+		</form>
+
+	</div>
+
+</ion-content>
+
