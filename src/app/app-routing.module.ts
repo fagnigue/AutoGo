@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'voiture',
     loadChildren: () => import('./voiture/voiture.module').then( m => m.VoiturePageModule)
   },
+  {
+    path: 'reservation',
+    loadChildren: () => import('./reservation/reservation.module').then( m => m.ReservationPageModule)
+  },
 ];
 
 @NgModule({

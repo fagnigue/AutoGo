@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class CategorieVoiturePage implements OnInit {
 
 
-	evenements: string = 'Evènements';
-	affaire: string = 'Affaire';
-	balade: string = 'Balade';
-	vacances: string = 'Vacances'; 
+	evenements: string = 'evenements';
+	affaire: string = 'affaire';
+	balade: string = 'balade';
+	vacances: string = 'vacances'; 
 
   constructor(public route: Router, public data: InfoService) { }
 

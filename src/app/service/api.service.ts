@@ -5,7 +5,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 })
 export class ApiService {
 
-  server:any="http://127.0.0.1:8000/api/";
+  server:any="http://afriquearn.com/api/";
   constructor(public http:HttpClient) { 
 
   }
