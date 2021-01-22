@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 
 
 import { ApiService } from './../service/api.service';
+import { ToastController } from '@ionic/angular';
+import { report } from 'process';
 
 
 @Component({
@@ -31,12 +33,10 @@ export class HomePage {
     
    
 
-  constructor( public fb: FormBuilder, public route: Router,public api:ApiService) {
+  constructor( public fb: FormBuilder, public route: Router,public api:ApiService,public toast:ToastController) {
 
 
-    /*this.api.PostData(this.data).subscribe((data:any)=>{
-      console.log(data);
-    }); */
+    
 
     
       this.connecter = this.fb.group({
@@ -50,11 +50,46 @@ export class HomePage {
 
 
   login() {
-  	const datas= this.connecter.value;
-    console.log(datas);
 
-    this.route.navigate(['categorie-voiture']);
+    const datas= this.connecter.value;
+    if(datas.contact!="" && datas.password!=""){
+    
+        this.api.auth(datas.contact,datas.password).subscribe((responce:any)=>{
+              
+          if(responce.data==null){
+
+            this.toastShower("Erreur au niveau de vos informations",1000,"danger").then((u)=>{u.present()});
+          }else{
+            
+            this.toastShower("connection etablie avec succès",1000,"primary").then((u)=>{u.present()});
+            this.route.navigate(['categorie-voiture']);
+
+          }
+
+      })
+    }
+    else{
+      this.toastShower("merci de renseigner tout vos  champs",1000,"danger").then((u)=>{u.present()});
+    }
+
+    
   }
+
+
+  async toastShower(message,duration,color){
+
+   
+    return this.toast.create({
+
+            message:message,
+            duration:duration,
+            color:color,
+            position:"top",
+    });
+  
+
+}
+
 
 
 }

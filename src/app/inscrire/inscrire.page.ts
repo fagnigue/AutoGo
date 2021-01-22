@@ -5,6 +5,8 @@ import { InfoService } from '../info.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 import { Router } from "@angular/router";
+import { ApiService } from '../service/api.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inscrire',
@@ -14,12 +16,15 @@ import { Router } from "@angular/router";
 export class InscrirePage implements OnInit {
 
 
-	public sign: FormGroup;
+  public sign: FormGroup;
+  public responce:any;
 
   constructor(
   	public fb: FormBuilder,
     public data: InfoService,
-    public route: Router
+    public route: Router,
+    public api:ApiService,
+    public toast:ToastController
   ) {}
 
   ngOnInit() {
@@ -34,35 +39,56 @@ export class InscrirePage implements OnInit {
       "nom": ["", Validators.required],
       "prenom": ["", Validators.required],
       "email": ["", Validators.required],
-      "contact": ["", Validators.required],
-      "profession": ["", Validators.required],
-      "city": ["", Validators.required],
-      "password": ["", Validators.required]
+      "num_telephone": ["", Validators.required],
+      "proffession": ["", Validators.required],
+      "ville": ["", Validators.required],
+      "psswd": ["", Validators.required]
     });
   }
 
   signin() {
 
+
+
     const datas= this.sign.value;
-   
-    this.data.client["nom"] = datas["nom"];
+    console.log(datas.nom);
+    if(datas.nom!="" && datas.prenom!="" && datas.num_telephone!="" && datas.proffession!="" && datas.psswd!="" && datas.ville!=""){
 
-    this.data.client["prenom"] = datas["prenom"];
+      this.api.PostData(datas).subscribe((responce:any)=>{
+          this.responce=responce;
+          console.log(this.responce);
+          if(this.responce.message==true){
+            this.toastShower("Votre inscription à bien été faite",1000,"primary").then((u)=>u.present());
+            this.route.navigate(['/']);
+          }else{
+            this.toastShower("Veuillez verifier vos données",1000,"danger").then((u)=>u.present());
+          }
+          
+        }) 
 
-    this.data.client["email"] = datas["email"];
+  }else{
 
-    this.data.client["contact"] = datas["contact"];
+    this.toastShower("merci de verifier les données saisie",1000,"danger").then((u)=>{u.present()});
 
-    this.data.client["profession"] = datas["profession"];
-
-    this.data.client["city"] = datas["ctiy"];
-
-    this.data.client["password"] = datas["password"];
-
-     console.log(this.data.client);
-
-    this.route.navigate(['/']);
   }
+
+    
+  }
+
+
+  async toastShower(message,duration,color){
+
+   
+    return this.toast.create({
+
+            message:message,
+            duration:duration,
+            color:color,
+            position:"top",
+    });
+  
+
+}
 
 
 }

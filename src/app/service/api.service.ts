@@ -12,6 +12,23 @@ export class ApiService {
 
 
 
+  auth(numero,password){
+
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+
+     return this.http.get(`${this.server}client/auth/${numero}/${password}`,{headers:headers});
+
+
+  }
+
+
+
   PostData(body){
 
      
