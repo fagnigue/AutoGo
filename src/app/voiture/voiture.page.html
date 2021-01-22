@@ -13,7 +13,7 @@
 	<ion-grid>
 		<ion-row *ngFor="let car of cars; let index = index">
 
-			<ion-col size="12" *ngIf="car.categorie == data['categorie']">
+			<ion-col size="12" *ngIf="car.categorie == data['categorie'] && car.disponible == 'oui'">
 				
 
 				<ion-card>

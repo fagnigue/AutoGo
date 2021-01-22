@@ -26,6 +26,7 @@ export class VoiturePage implements OnInit {
   		image: 'mercedes_benz_c_300',
   		categorie: 'affaire',
       prix: 120000,
+      disponible:'oui',
   	},
   	{
   		nom: 'Mercedes',
@@ -33,6 +34,7 @@ export class VoiturePage implements OnInit {
   		image: 'mercedes-benz_cla_2020.jpeg',
   		categorie: 'affaire',
       prix: 150000,
+      disponible:'oui',
   	},
   	{
   		nom: 'Hyundai',
@@ -40,6 +42,7 @@ export class VoiturePage implements OnInit {
   		image: 'hyundai_tucson.jpeg',
   		categorie: 'evenements',
       prix: 80000,
+      disponible:'oui',
   	},
   	{
   		nom: 'KIA',
@@ -47,6 +50,7 @@ export class VoiturePage implements OnInit {
   		image: 'kia_seltos.jpeg',
   		categorie: 'evenements',
       prix: 90000,
+      disponible:'non',
   	},
   	{
   		nom: 'Mercedes',
@@ -54,6 +58,7 @@ export class VoiturePage implements OnInit {
   		image: 'mercedes_marco_polo.png',
   		categorie: 'vacances',
       prix: 160000,
+      disponible:'non',
   	},
   	{
   		nom: 'Mercedes',
@@ -61,6 +66,7 @@ export class VoiturePage implements OnInit {
   		image: 'mercedes_eqv.jpeg',
   		categorie: 'vacances',
       prix: 190000,
+      disponible:'oui',
   	},
   	{
   		nom: 'Mercedes',
@@ -68,6 +74,7 @@ export class VoiturePage implements OnInit {
   		image: 'mercedes_sl.jpeg',
   		categorie: 'balade',
       prix: 150000,
+      disponible:'oui',
   	},
   	{
   		nom: 'KIA',
@@ -75,6 +82,7 @@ export class VoiturePage implements OnInit {
   		image: 'kia_soul.jpeg',
   		categorie: 'balade',
       prix: 100000,
+      disponible:'oui',
   	}
   ]
 

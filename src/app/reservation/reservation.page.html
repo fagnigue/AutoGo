@@ -11,40 +11,55 @@
 
 	<div id="container">
 		
-		<form>
+		<form [formGroup]="reserve" (ngSubmit)="reserver()">
 
-	         	<ion-item>  
-			      <ion-label position="floating"><font style="font-size: 13px;">Delai: </font></ion-label>  
-			      <ion-input type="number"></ion-input>  
-			    </ion-item>
+			    	
+			    	<ion-grid>
+			    		
+			    		<ion-row>
+			    			<ion-col size="12">
+			    				<ion-item>  
+							      <ion-label position="floating"><font style="font-size: 13px;">Delai</font></ion-label>  
+							      <ion-input type="number" formControlName="delai"></ion-input>  
+							    </ion-item>
+			    			</ion-col>
+			    		</ion-row>
 
-			    	<div class="form-check">
-					  <input class="form-check-input" type="radio" id="flexRadioDefault1" value="oui">
-					  <label class="form-check-label" for="flexRadioDefault1">
-					    Oui
-					  </label>
-					</div>
-					<div class="form-check">
-					  <input class="form-check-input" type="radio" id="flexRadioDefault2" value="non">
-					  <label class="form-check-label" for="flexRadioDefault2">
-					    Non
-					  </label>
-					</div>
+			    		<ion-row>
+			    			<ion-col size="12">
+								<ion-item>
+								    <ion-label class="genre">Prendre chauffeur</ion-label>
+								    <ion-select placeholder="Choisir" formControlName="chauffeur">
+								      <ion-select-option value="oui">Oui</ion-select-option>
+								      <ion-select-option value="non">Non</ion-select-option>
+								    </ion-select>
+								</ion-item>
+							</ion-col>
+			    		</ion-row>
 
-			    <ion-item>  
-		 	      <ion-label position="floating"><font style="font-size: 13px;">Prénom: </font></ion-label>  
-			      <ion-input type="text"></ion-input>  
-			    </ion-item>
+			    		<ion-row>
+			    			<ion-col size="12">
+			    					<ion-item>
+									    <ion-label class="genre">Mode de paiement</ion-label>
+									    <ion-select placeholder="Choisir" formControlName="paiement">
+									      <ion-select-option value="à la livraison">À la livraison</ion-select-option>
+									      <ion-select-option value="Mobile Money">Mobile Money</ion-select-option>
+									    </ion-select>
+									</ion-item>
+			    			</ion-col>
+			    		</ion-row>
 
+			    		<ion-row>
+				          	<ion-col>
+						  		<ion-button type="submit" color="primary" style="width: 150px;"><font size="3px">S'INSCRIRE</font></ion-button>
+						    </ion-col>
+						</ion-row>
 
+			    	</ion-grid>
 			    
 
 
-	          <ion-row>
-	          	<ion-col>
-			  		<ion-button type="submit" color="primary" style="width: 150px;"><font size="3px">S'INSCRIRE</font></ion-button>
-			    </ion-col>
-			  </ion-row>
+	          
 
 		</form>
 

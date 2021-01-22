@@ -44,7 +44,22 @@ export class InscrirePage implements OnInit {
   signin() {
 
     const datas= this.sign.value;
-    console.log(datas);
+   
+    this.data.client["nom"] = datas["nom"];
+
+    this.data.client["prenom"] = datas["prenom"];
+
+    this.data.client["email"] = datas["email"];
+
+    this.data.client["contact"] = datas["contact"];
+
+    this.data.client["profession"] = datas["profession"];
+
+    this.data.client["city"] = datas["ctiy"];
+
+    this.data.client["password"] = datas["password"];
+
+     console.log(this.data.client);
 
     this.route.navigate(['/']);
   }
