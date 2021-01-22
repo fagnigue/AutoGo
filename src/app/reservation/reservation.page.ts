@@ -49,6 +49,8 @@ export class ReservationPage implements OnInit {
 
   	this.data.reservation["paiement"] = res["paiement"];
 
+    console.log(this.data.reservation);
+
   }
 
 
