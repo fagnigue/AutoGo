@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InfoService } from '../info.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from './../service/api.service';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-categorie-voiture',
@@ -17,21 +17,78 @@ export class CategorieVoiturePage implements OnInit {
 	balade:any = 3;
 	vacances: any = 5; 
   id:any;
-
-  constructor(public active:ActivatedRoute,public route: Router, public data: InfoService,public api:ApiService) { }
+  res:any;
+  numero:any;
+  data:any;
+  car_info:any;
+  constructor(public alert:AlertController,public active:ActivatedRoute,public route: Router,public api:ApiService) { }
 
   ngOnInit() {
-	  this.data.reservation;
+    this.res=this.active.snapshot.params["reservation"];
+    this.numero=this.active.snapshot.params["id"];
+    
+    
+  
   }
 
 
   finder(id){
 
-	  this.id=this.active.snapshot.params["id"];
+    this.id=this.active.snapshot.params["id"];
+    
     this.route.navigate(["/voiture",{id:id,numero:this.id}]);
     
   }
 
+
+
+  print(){
+
+    this.api.getRerservationInfoByNumber(this.numero).subscribe((u)=> {
+      
+         this.data=u;
+
+         this.api.CarFinder(this.data.id_voiture).subscribe((u)=> {
+           
+          
+           this.car_info=u;
+
+
+           this.presentAlert(this.data.chauffeur,this.data.delai,this.car_info.nom,this.car_info.modele,Number(this.car_info.Prix_location)*Number(this.data.delai),this.data.paiement);
+        
+        
+        
+        });
+         
+
+
+  });
+
+
+  }
+
+
+
+
+  async presentAlert(chauffeur,delai,nom,modele,prix,paiement) {
+    if(chauffeur==1){
+      chauffeur="oui"
+    }else{
+      chauffeur="non"
+    }
+    const alert = await this.alert.create({
+      cssClass: 'my-custom-class',
+      header: 'Reservation',
+      
+      message: `Voiture :${nom},Modele: ${modele}   , prix :${prix} FCFA , delai: ${delai} Jours , chauffeur : ${chauffeur} , paiement:${paiement}   `,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+
+  
 
 
   

@@ -11,6 +11,64 @@ export class ApiService {
   }
 
 
+  Reserver(data){
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+
+     return this.http.post(`${this.server}reservation`,data);
+
+  }
+
+
+  getReservationInfo(){
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+
+     return this.http.get(`${this.server}reservation`);
+
+  }
+
+
+  getRerservationInfoByNumber(numero){
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+
+     return this.http.get(`${this.server}reservation/number/${numero}`);
+
+
+  }
+
+
+  CarFinder(id){
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+
+     return this.http.get(`${this.server}voiture/${id}`);
+
+  }
+
+  
+
   CategorieFinder(id_cat){
 
     let headers = new HttpHeaders();

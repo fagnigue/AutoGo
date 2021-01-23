@@ -34,6 +34,7 @@
     </ion-card>
 
     <ion-card>
+      
       <button ion-item (click)="finder(4)" id="balade">
       <ion-card-header>
 
@@ -56,5 +57,12 @@
       </ion-card-header>
       </button>
     </ion-card>
+    <div *ngIf="this.res">
+    <ion-button ion-item (click)="print()">
+           Voir ma reservation
+    </ion-button>
     </div>
+
+    
+</div>
 </ion-content>

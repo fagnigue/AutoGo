@@ -4,6 +4,7 @@ import { InfoService } from '../info.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../service/api.service';
+import { ToastController } from '@ionic/angular';
 
 
 
@@ -20,18 +21,27 @@ export class VoiturePage implements OnInit {
   public numero;
   index: any = '';
 
-  constructor(public api:ApiService,public categorie: InfoService, public route: Router,public active:ActivatedRoute) { }
+  constructor(public toast:ToastController,public api:ApiService,public categorie: InfoService, public route: Router,public active:ActivatedRoute) { }
 
   ngOnInit() {
 
-  this.id=this.active.snapshot.params["id"];
+  this.numero=this.active.snapshot.params["numero"];
 
-  
-  this.api.CategorieFinder(Number(this.id)).subscribe((responce)=>{
+  if(this.numero!=undefined){
+
+    this.id=this.active.snapshot.params["id"];
+
     
-    this.data=responce;
-   
-  });
+    this.api.CategorieFinder(Number(this.id)).subscribe((responce)=>{
+      
+      this.data=responce;
+    
+    });
+
+}else{
+
+  this.toastShower("merci de vous reconnecter",2000,"danger").then((u)=>u.present());
+}
  
 
   }
@@ -40,11 +50,36 @@ export class VoiturePage implements OnInit {
 
    
     this.numero=this.active.snapshot.params["numero"];
+
+    if(this.numero!=undefined){
+
+      this.route.navigate(['/reservation',{card_id:index,numero:this.numero}]);
+
+    }else{
+
+      this.toastShower("merci de vous reconnecter",2000,"danger").then((u)=>u.present());
+      this.route.navigate(['/']);
+    }
   
 
-    this.route.navigate(['/reservation',{card_id:index,numero:this.numero}]);
+    
 
   }
+
+
+  async toastShower(message,duration,color){
+
+   
+    return this.toast.create({
+
+            message:message,
+            duration:duration,
+            color:color,
+            position:"top",
+    });
+  
+
+}
   
 
 }
