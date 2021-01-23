@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "Auto_",
+  "appId": "com.autogo.app",
+  "appName": "AutoGo",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
