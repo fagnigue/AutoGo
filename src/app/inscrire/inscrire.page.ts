@@ -65,6 +65,10 @@ export class InscrirePage implements OnInit {
             this.toastShower("Veuillez verifier vos données",1000,"danger").then((u)=>u.present());
           }
           
+        },(error:any)=>{
+
+          this.toastShower("Merci de verifier votre connection internet",2000,"danger").then((u)=>{u.present()});
+            
         }) 
 
   }else{

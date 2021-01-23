@@ -8,6 +8,7 @@ import { Router,ActivatedRoute } from "@angular/router";
 
 import { AlertController, ToastController } from "@ionic/angular";
 import { ApiService } from './../service/api.service';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-reservation',
@@ -18,7 +19,8 @@ export class ReservationPage implements OnInit {
 
   public reserve: FormGroup;
   public driver:any;
-
+  public car:any;
+  public prix:any;
   constructor(
   	public fb: FormBuilder,
     public data: InfoService,
@@ -26,15 +28,23 @@ export class ReservationPage implements OnInit {
     public alert: AlertController,
     public api:ApiService,
     public active:ActivatedRoute,
-    public toast:ToastController
+    public toast:ToastController,
+   
   ) {}
 
   ngOnInit() {
 
-  	this.initforms();
+    this.initforms();
+    const card_id=this.active.snapshot.params["card_id"];
+    this.api.CarFinder(card_id).subscribe((u)=>{
+
+       console.log(u);
+        this.car=u;
+    });
   	this.data.reservation;
 
   }
+
 
   initforms(){
   	this.reserve = this.fb.group({
@@ -59,6 +69,8 @@ export class ReservationPage implements OnInit {
     }else{
       this.driver=0;
     }
+
+    if(clt_numero!="undefined"){
     
     const data={
 
@@ -69,20 +81,37 @@ export class ReservationPage implements OnInit {
       "id_client":clt_numero
 
     };
+    if(res.delai!="" && res.paiement!=""){
 
-    this.api.Reserver(data).subscribe((u)=>{
-      console.log(u);
-      this.toastShower("Félicitations votre demande à été prise en compte",4000,"success").then((u)=>u.present());
-      this.route.navigate(['/categorie-voiture',{id:clt_numero,reservation:true}]);
-    });
+          this.api.Reserver(data).subscribe((u)=>{
+            console.log(u);
+            this.toastShower("Félicitations votre demande à été prise en compte",4000,"success").then((u)=>u.present());
+            this.route.navigate(['/categorie-voiture',{id:clt_numero,reservation:true}]);
+          });
 
-  	this.data.reservation["delai"] = res["delai"];
+          this.data.reservation["delai"] = res["delai"];
 
-  	this.data.reservation["chauffeur"] = res["chauffeur"];
+          this.data.reservation["chauffeur"] = res["chauffeur"];
 
-  	this.data.reservation["paiement"] = res["paiement"];
+          this.data.reservation["paiement"] = res["paiement"];
 
-    console.log(this.data.reservation);
+          console.log(this.data.reservation);
+
+  }else{
+
+    this.toastShower('Merci de renseigner tout les champs',4000,"danger").then((u)=>u.present());
+  
+  }
+
+    }
+  
+  else{
+
+      this.toastShower('erreur de connection reconnecter vous',4000,"danger").then((u)=>u.present());
+
+      this.route.navigate(["/"]);
+  }
+
 
   }
 
@@ -100,6 +129,13 @@ export class ReservationPage implements OnInit {
     });
   
 
+}
+
+
+test(event){
+
+   this.prix=Number(event.detail.value)*Number(this.car.Prix_location);
+   console.log(this.prix);
 }
 
   

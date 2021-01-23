@@ -21,6 +21,7 @@ export class CategorieVoiturePage implements OnInit {
   numero:any;
   data:any;
   car_info:any;
+  isConn:boolean;
   constructor(public alert:AlertController,public active:ActivatedRoute,public route: Router,public api:ApiService) { }
 
   ngOnInit() {
@@ -66,6 +67,20 @@ export class CategorieVoiturePage implements OnInit {
 
 
   }
+
+
+  reload(evenement){
+
+    setTimeout(()=>{
+ 
+     evenement.target.complete();
+     this.isConn=false;
+     
+ 
+    },1000);
+ 
+  }
+ 
 
 
 

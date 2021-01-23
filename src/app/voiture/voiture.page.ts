@@ -20,6 +20,7 @@ export class VoiturePage implements OnInit {
   public data;
   public numero;
   index: any = '';
+  isConn:boolean;
 
   constructor(public toast:ToastController,public api:ApiService,public categorie: InfoService, public route: Router,public active:ActivatedRoute) { }
 
@@ -78,6 +79,21 @@ export class VoiturePage implements OnInit {
             position:"top",
     });
   
+
+}
+
+reload(evenement){
+
+  setTimeout(()=>{
+
+   evenement.target.complete();
+   this.api.CategorieFinder(Number(this.id)).subscribe((responce)=>{
+    this.data=responce;
+  });
+   this.isConn=false;
+   
+
+  },1000);
 
 }
   
