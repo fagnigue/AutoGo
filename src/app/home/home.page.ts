@@ -18,6 +18,10 @@ import { report } from 'process';
 export class HomePage {
 
   public connecter: FormGroup;
+  public isConn:boolean;
+
+  public datas;
+  
 
 
     
@@ -41,10 +45,10 @@ export class HomePage {
 
   login() {
 
-    const datas= this.connecter.value;
-    if(datas.contact!="" && datas.password!=""){
+     this.datas= this.connecter.value;
+    if(this.datas.contact!="" && this.datas.password!=""){
     
-        this.api.auth(datas.contact,datas.password).subscribe((responce:any)=>{
+        this.api.auth(this.datas.contact,this.datas.password).subscribe((responce:any)=>{
               
           if(responce.data==null){
 
@@ -57,6 +61,10 @@ export class HomePage {
 
           }
 
+      },(error)=>{
+
+        this.toastShower("Problème lors de la connection",1000,"danger").then((u)=>{u.present()});
+           
       })
     }
     else{
@@ -78,6 +86,30 @@ export class HomePage {
             position:"top",
     });
   
+
+}
+
+
+
+reload(evenement){
+
+  setTimeout(()=>{
+
+      evenement.target.complete();
+
+        this.api.getClientData().subscribe((u)=>{
+
+          console.log(u);
+
+        },(error:any)=>{
+
+          this.toastShower("Problème lors de la connection",1000,"danger").then((u)=>{u.present()});
+        });
+   
+        this.isConn=false;
+   
+
+  },1000);
 
 }
 

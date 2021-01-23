@@ -2,6 +2,16 @@
 
 <ion-content>
 
+
+<ion-refresher slot="fixed" disabled="false" (ionRefresh)="reload($event)">  
+    <ion-refresher-content  
+    pullingIcon="arrow-dropdown"  
+    pullingText="Pull to refresh"  
+    refreshingSpinner="dots"  
+   ></ion-refresher-content>  
+  </ion-refresher> 
+  
+
 	<div class="container1">
 
 	    <img src="../../assets/logo.png">
